@@ -1,6 +1,9 @@
 Remote Control Decoding and Interrupts (Lab05)
 ==============================================
 
+#Purpose
+
+
 
 #Basic Functionality
 
@@ -8,4 +11,5 @@ Remote Control Decoding and Interrupts (Lab05)
 
 #A Functionality
 
-
+#Documentation: 
+NONE
