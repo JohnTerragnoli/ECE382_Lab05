@@ -29,7 +29,7 @@ ANNOTATED PICTURE:
 125us
 3. Annotate the wave picture to show where lines 32-34 and 36-38 are being executed: 
 
-
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/Annotate%20Waveform.PNG "func location")
 
 
 
