@@ -27,6 +27,7 @@ This is the variables tab after the pause button was hit:
 
 
 Screenshot of logic analyzer after button was pressed: 
+
 ![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/General%20Logic%20Analyzer%20Screenshot.JPG "Logic Analyzer")
 
 Notice, this is the basic packet of information which is sent from the remote to the IR receiver, which is relayed to the MSP430.  
