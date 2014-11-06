@@ -102,6 +102,10 @@ Note: An issue which came up was having decimals in the upper and lower bounds. 
 | CH -   | 0000 0010 1111 1101   1111 1000 0000 0111  | 02FDF807 |
 
 
+##Important Files: 
+The Excel file with all of the forumulas needed to compute the above tabels can be seen [here]().  
+
+
 #Basic Functionality
 
 #B Functionality
