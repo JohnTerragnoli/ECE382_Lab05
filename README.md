@@ -24,9 +24,9 @@ LOGIC ANALYZER SCREENSHOT.
 ANNOTATED PICTURE: 
 
 1. How long did it take the timer to roll over? 
-16ms
+65.535ms.  Just take the timer count and multiply it by 0xFFFF.  
 2. How long does each timer count last for? 
-125us
+1us.  The clock frequency is 8MHz, but the ID_3 is being used, which increases the period or length of a count by 8.  
 3. Annotate the wave picture to show where lines 32-34 and 36-38 are being executed: 
 
 ![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/Annotate%20Waveform.PNG "func location")
