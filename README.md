@@ -103,7 +103,13 @@ Note: An issue which came up was having decimals in the upper and lower bounds. 
 
 
 ##Important Files: 
-The Excel file with all of the forumulas needed to compute the above tabels can be seen [here]().  
+The Excel file with all of the forumulas needed to compute the above tabels can be seen [here](https://github.com/JohnTerragnoli/ECE382_Lab05/blob/master/3.%20Misc%20Files/Calculations.xlsx).
+
+They can also be seen [here](https://drive.google.com/file/d/0Bymb7kjtbzuqdEJ0S1BzbEdnRW8/view?usp=sharing).  
+
+I added two links because I wanted the Excel file to be on github, except I am not 100% certin if the file can be accessed by other people.  Just two safety nets :)
+
+Also, here is the copy of the [test code]() written by Dr. Coulston.  I did nothing in this section, not even modify the header, because I did not contribute to it in any way.  
 
 
 #Basic Functionality
