@@ -3,6 +3,8 @@ Remote Control Decoding and Interrupts (Lab05)
 
 #Purpose
 
+To hook up an IR receiver to the MSP430 to control interaction between the MSP430 and a remote.  
+
 #Day 1 Activities
 
 Below is a picture of how the MSP430 was attached to the IR receiver.  
@@ -24,12 +26,15 @@ This is the variables tab after the pause button was hit:
 ![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/TIME0_changed%20after%20button%20hit.PNG "func location")
 
 
-
-
 Screenshot of logic analyzer after button was pressed: 
 
 
 LOGIC ANALYZER SCREENSHOT.  
+
+Notice, this is the basic packet of information which is sent from the remote to the IR receiver, which is relayed to the MSP430.  
+
+These last screenshots were done just to get the timing down between running Code Composer Studio, the Logic Analyzer, and the remote. 
+
 
 **A Few Quick Questions**
 
@@ -43,7 +48,7 @@ ANNOTATED PICTURE:
 
 ![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/Annotate%20Waveform.PNG "func location")
 
-
+At first I did this on the oscilliscope, but then I found it was easier just to use the logic analyzer.  Screenshots of the oscilliscope can be produced upon request.  
 
 ##IR Data Packets: 
   
@@ -57,9 +62,10 @@ ANNOTATED PICTURE:
 | Data 0,logic 0 half-pulse | 0.00063                      | 630                           | 637                         |
 | Data 0,logic 1 half-pulse | 0.000546875                  | 547                           | 490                         |
 | Stop,logic 0 half-pulse   | 0.0005816                    | 582                           | 586                         |
-| Stop logic 1 half-pulse   | 0.0396875                    | 39688                         |                             |
+| Stop logic 1 half-pulse   | 0.0396875                    | 39688                         | 39251                       |
 
-Note that the number 99.9999426697% refers to all of the values within 5 standard deviations of the mean.  Therefore, to find the range for which we will check to check what portion of the range we are on, 5 standard deviations on other side of the mean value will be accepted to recognize that portion of the wave.  This will capture 99.9999426697% of all intended portions of the wave which we are looking for at that moment.  These ranges are shown below in the table after an experiment was run to gather 10 samples of the waveforms described above.  
+Note that the number 99.9999426697% refers to all of the values within 5 standard deviations of the mean, as noted by this article on [Standard Deviation](http://en.wikipedia.org/wiki/Standard_deviation#Rules_for_normally_distributed_data).  Therefore, to find the range for which we will check to check what portion of the range we are on, 5 standard deviations on other side of the mean value will be accepted to recognize that portion of the wave.  This will capture 99.9999426697% of all intended portions of the wave which we are looking for at that moment.  These ranges are shown below in the table after an experiment was run to gather 10 samples of the waveforms described above.  
+
 
 
 |                  | Start logic 0 half-pulse | Start logic 1   half-pulse | Data 1   logic 0 half-pulse | Data 1   logic 1 half-pulse | Data 0   logic 0 half-pulse | Data 0   logic 1 half-pulse | Stop logic 0   half-pulse | Stop   logic 1 half-pulse |
@@ -79,6 +85,8 @@ Note that the number 99.9999426697% refers to all of the values within 5 standar
 |                  |                          |                            |                             |                             |                             |                             |                           |                           |
 | Lower Bound | 9028                     | 4479                       | 621                         | 1603                        | 621                         | 474                         | 569                       | 39238                     |
 | Upper Bound   | 9052                     | 4497                       | 652                         | 1626                        | 652                         | 506                         | 604                       | 39264                     |
+
+Note: An issue which came up was having decimals in the upper and lower bounds.  The idea was to take the ceiling of the decimal calculated for the lower bound and the floor of the decimal calculated for the upper bound.  This was done so to ensure that the values recognized by the program are defintely within 5 standard deviations.  If the decimals were kept, which first of all is impossible, or if the floor and ceiling was taken, then a value on the fringes might be accepted by the computer as a certain value when in fact it is not.  It is a small precaution, but it took minimal effort and was done anyway.  
 
 
 | Button | code (not including start and stop bits) | In Hex   |
