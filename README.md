@@ -117,5 +117,5 @@ Also, here is the copy of the [test code](https://raw.githubusercontent.com/John
 
 #A Functionality
 
-#Documentation: 
-NONE
+#Documentation Day 1: 
+C2C Hunter Her explained to me to use a falling edge on the logic analyzer and where to look in CCS for the count values.  
