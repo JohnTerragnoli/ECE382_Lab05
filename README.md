@@ -12,6 +12,10 @@ PICTURE OF SETUP
 First hooking up the IR receiver, pressing a button, and then recording the changes in CCS in the 0x200 - 0x0400 range.  Notice, this range was cleared before a button was pressed to that all changes could be clearly seen highlighted in yellow.  A screenshot of the RAM range can be seen below: 
 
 RAM RANGE SCREENSHOTs
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/Reset%20Memory.PNG "func location")
+
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/0x0200-0x400%20changed.PNG "func location")
+
 
 
 Screenshot of logic analyzer after button was pressed: 
