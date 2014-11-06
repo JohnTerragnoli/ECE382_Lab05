@@ -45,6 +45,9 @@ ANNOTATED PICTURE:
 | Data 0 logic 1 half-pulse |               |                |
 | Stop logic 0 half-pulse   |               |                |
 
+Note that the number 99.9999426697% refers to all of the values within 5 standard deviations of the mean.  Therefore, to find the range for which we will check to check what portion of the range we are on, 5 standard deviations on other side of the mean value will be accepted to recognize that portion of the wave.  This will capture 99.9999426697% of all intended portions of the wave which we are looking for at that moment.  These ranges are shown below in the table after an experiment was run to gather 10 samples of the waveforms described above.  
+
+
 
 | Button | code (not including start and stop bits) |
 |--------|------------------------------------------|
