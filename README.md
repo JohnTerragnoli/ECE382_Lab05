@@ -24,8 +24,11 @@ LOGIC ANALYZER SCREENSHOT.
 ANNOTATED PICTURE: 
 
 1. How long did it take the timer to roll over? 
+16ms
 2. How long does each timer count last for? 
+125us
 3. Annotate the wave picture to show where lines 32-34 and 36-38 are being executed: 
+
 
 
 
