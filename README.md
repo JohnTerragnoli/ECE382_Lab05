@@ -8,28 +8,26 @@ To hook up an IR receiver to the MSP430 to control interaction between the MSP43
 #Day 1 Activities
 
 Below is a picture of how the MSP430 was attached to the IR receiver.  
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/IR%20and%20MSP430%20Wireup.JPG "Wireup")
 
-PICTURE OF SETUP
 
 First hooking up the IR receiver, pressing a button, and then recording the changes in CCS in the 0x200 - 0x0400 range.  Notice, this range was cleared before a button was pressed to that all changes could be clearly seen highlighted in yellow.  A screenshot of the RAM range can be seen below: 
 
 
 This is the RAM range after it was cleared.
-![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/Reset%20Memory.PNG "func location")
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/Reset%20Memory.PNG "RAM Clear")
 
 This is the RAM range after the program was hit, a button on the remote was pressed, and the program was paused.  
 
-![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/0x0200-0x400%20changed.PNG "func location")
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/0x0200-0x400%20changed.PNG "RAM Changed")
 
 This is the variables tab after the pause button was hit: 
 
-![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/TIME0_changed%20after%20button%20hit.PNG "func location")
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/TIME0_changed%20after%20button%20hit.PNG "Variables Changed")
 
 
 Screenshot of logic analyzer after button was pressed: 
-
-
-LOGIC ANALYZER SCREENSHOT.  
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/General%20Logic%20Analyzer%20Screenshot.JPG "Logic Analyzer")
 
 Notice, this is the basic packet of information which is sent from the remote to the IR receiver, which is relayed to the MSP430.  
 
@@ -109,7 +107,7 @@ They can also be seen [here](https://drive.google.com/file/d/0Bymb7kjtbzuqdEJ0S1
 
 I added two links because I wanted the Excel file to be on github, except I am not 100% certin if the file can be accessed by other people.  Just two safety nets :)
 
-Also, here is the copy of the [test code]() written by Dr. Coulston.  I did nothing in this section, not even modify the header, because I did not contribute to it in any way.  
+Also, here is the copy of the [test code](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/test5.c) written by Dr. Coulston.  I did nothing in this section, not even modify the header, because I did not contribute to it in any way.  
 
 
 #Basic Functionality
