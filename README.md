@@ -35,15 +35,17 @@ ANNOTATED PICTURE:
 
 ##IR Data Packets: 
   
-| Pulse                     | Duration (ms) | Timer A counts |
-|---------------------------|---------------|----------------|
-| Start logic 0 half-pulse  |               |                |
-| Start logic 1 half-pulse  |               |                |
-| Data 1 logic 0 half-pulse |               |                |
-| Data 1 logic 1 half-pulse |               |                |
-| Data 0 logic 0 half-pulse |               |                |
-| Data 0 logic 1 half-pulse |               |                |
-| Stop logic 0 half-pulse   |               |                |
+|                           | measured,from logic analyzer | Timer A   Counts (calculated) | Timer A   Counts (from CCS) |
+|---------------------------|------------------------------|-------------------------------|-----------------------------|
+|                           | seconds                      | counts                        | counts                      |
+| Start,logic 0 half-pulse  | 0.009218                     | 9218                          | 9042                        |
+| Start,logic 1 half-pulse  | 0.00453125                   | 4531                          | 4485                        |
+| Data 1,logic 0 half-pulse | 0.00059375                   | 594                           | 583                         |
+| Data 1,logic 1 half-pulse | 0.0016875                    | 1688                          | 1612                        |
+| Data 0,logic 0 half-pulse | 0.00063                      | 630                           | 637                         |
+| Data 0,logic 1 half-pulse | 0.000546875                  | 547                           | 490                         |
+| Stop,logic 0 half-pulse   | 0.0005816                    | 582                           | 586                         |
+| Stop logic 1 half-pulse   | 0.0396875                    | 39688                         |                             |
 
 Note that the number 99.9999426697% refers to all of the values within 5 standard deviations of the mean.  Therefore, to find the range for which we will check to check what portion of the range we are on, 5 standard deviations on other side of the mean value will be accepted to recognize that portion of the wave.  This will capture 99.9999426697% of all intended portions of the wave which we are looking for at that moment.  These ranges are shown below in the table after an experiment was run to gather 10 samples of the waveforms described above.  
 
