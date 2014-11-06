@@ -11,10 +11,18 @@ PICTURE OF SETUP
 
 First hooking up the IR receiver, pressing a button, and then recording the changes in CCS in the 0x200 - 0x0400 range.  Notice, this range was cleared before a button was pressed to that all changes could be clearly seen highlighted in yellow.  A screenshot of the RAM range can be seen below: 
 
-RAM RANGE SCREENSHOTs
+
+This is the RAM range after it was cleared.
 ![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/Reset%20Memory.PNG "func location")
 
+This is the RAM range after the program was hit, a button on the remote was pressed, and the program was paused.  
+
 ![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/0x0200-0x400%20changed.PNG "func location")
+
+This is the variables tab after the pause button was hit: 
+
+![alt tag](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/2.%20Pictures/TIME0_changed%20after%20button%20hit.PNG "func location")
+
 
 
 
