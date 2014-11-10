@@ -114,6 +114,9 @@ Also, here is the copy of the [test code](https://raw.githubusercontent.com/John
 #Basic Functionality
 
 Design Process: 
+
+this is just doodleing.  I will write down a more detailed version of the process later.  
+
 1. First, I made sure to put my own values for my specific remote into the H file so that the numbers can be interpreted correctly.  
 2. 
 
