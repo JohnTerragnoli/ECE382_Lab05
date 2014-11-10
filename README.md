@@ -113,6 +113,14 @@ Also, here is the copy of the [test code](https://raw.githubusercontent.com/John
 
 #Basic Functionality
 
+Design Process: 
+1. First, I made sure to put my own values for my specific remote into the H file so that the numbers can be interpreted correctly.  
+2. 
+
+
+
+2. When I first did this I used the lower and upper bounds calculated in Excel and just wrote those specific values as the definitions.  After I had coded a lot, my code did not run.  This made me think it was wrong to go against what was originally on the skeleton file.  
+
 #B Functionality
 
 #A Functionality
