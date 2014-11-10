@@ -120,6 +120,7 @@ Design Process:
 
 
 2. When I first did this I used the lower and upper bounds calculated in Excel and just wrote those specific values as the definitions.  After I had coded a lot, my code did not run.  This made me think it was wrong to go against what was originally on the skeleton file.  
+3. I use the range initially give to us.  This made my buttons work sporatically.  So I tried widening the accepted range.  I changed it from 100 to 150, and this worked better so it was kept.  If any additional side effects show up later then I will be sure to remember this change and anticipate its possible ramifications.    
 
 #B Functionality
 
