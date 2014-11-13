@@ -165,6 +165,8 @@ Unfortunatetly, nothing was achieved.  A functionality was not attained.  For cu
 
 [Header File](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/A.h) 
 
+[Assembly Code](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/drawing.asm)
+
 #Documentation: 
 C2C Hunter Her explained to me to use a falling edge on the logic analyzer and where to look in CCS for the count values. 
 C2C Erik Thompson explained how to use the second interrupt to delay time and how to rotate the bits to record them properly in the first interrupt.  
