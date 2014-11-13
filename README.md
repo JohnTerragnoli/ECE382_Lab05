@@ -161,9 +161,9 @@ The purpose of A functionality was to use the remote to play etch-a-sketch (Lab 
 Conclusion: 
 Unfortunatetly, nothing was achieved.  A functionality was not attained.  For curiosity's sake though, I have included the code used in attempting functionality.  
 
-[C Code]()
+[C Code](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/A.c)
 
-[Header File]() 
+[Header File](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/A.h) 
 
 #Documentation: 
 C2C Hunter Her explained to me to use a falling edge on the logic analyzer and where to look in CCS for the count values. 
