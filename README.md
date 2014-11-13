@@ -136,10 +136,26 @@ NOTE: Excel was used, along with the data from day 1 calculations to find out th
 The code for this basic functionality can be seen here: 
 
 [C code](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/basic_start5.c)
+
 [header file](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/basic_start5.h)
+
+##Analysis/Conclusion: 
+
+Overall, basic functionality was pretty easy but time consuming as it took me a while to understand the specific commands.  Once they were understood, I was able to work with them fairly easily.  The only difficult part of this lab was to accept an IR signal and decode it propertly.  Everything else was done before.  I would say that this was accomplished quite successfully and adapts to the conventions used quite well.  For the conventions given, 0s and 1s are determined by the length of the high pulse.  This made the process slightly more difficult, but now that it is done,this system can be reused for other projects.  
 
 
 #A Functionality
 
-#Documentation Day 1: 
-C2C Hunter Her explained to me to use a falling edge on the logic analyzer and where to look in CCS for the count values.  
+The purpose of A functionality was to use the remote to play etch-a-sketch (Lab 04) on the LCD screen. 
+
+
+**Design Process**
+1. I started working on this by copying my .asm code from Lab 04 and ensuring they were all linked to the same header, so that the files could interact.
+2. Then, I relized that it would probably be easier to just call the subroutines needed by the main file by mentioning them with "exter" statements at the top of the code.  
+3. Then I added the intializing lines from Lab 4 which just set up the variables used to keep track of the color and location of the box.  This included setting up the LCD screen.  
+4. Then, I pressed the build button to ensure there were no errors and I played the program.  A block was initialized on the middle of the LCD.  
+5. Then, all there was to do was to change which buttons are being sensed in the main method.  I changed them to directions and ZERO button which was to be used for color.  Ideally this would work just like required functionality.  However, when I played the program, 
+
+#Documentation: 
+C2C Hunter Her explained to me to use a falling edge on the logic analyzer and where to look in CCS for the count values. 
+C2C Erik Thompson explained how to use the second interrupt to delay time and how to rotate the bits to record them properly in the first interrupt.  
