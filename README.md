@@ -159,7 +159,11 @@ The purpose of A functionality was to use the remote to play etch-a-sketch (Lab 
 
 
 Conclusion: 
-Unfortunatetly, nothing was achieved.  A functionality was not attained.  
+Unfortunatetly, nothing was achieved.  A functionality was not attained.  For curiosity's sake though, I have included the code used in attempting functionality.  
+
+[C Code]()
+
+[Header File]() 
 
 #Documentation: 
 C2C Hunter Her explained to me to use a falling edge on the logic analyzer and where to look in CCS for the count values. 
