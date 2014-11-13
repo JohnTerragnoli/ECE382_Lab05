@@ -110,6 +110,9 @@ I added two links because I wanted the Excel file to be on github, except I am n
 
 Also, here is the copy of the [test code](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/test5.c) written by Dr. Coulston.  I did nothing in this section, not even modify the header, because I did not contribute to it in any way.  
 
+#Day 2 Functionality
+All of this was proven in basic functionality during class to Captain Trimble.  It probably would have been better to take baby steps but this was not done.  
+
 
 #Basic Functionality
 
@@ -121,21 +124,20 @@ this is just doodleing.  I will write down a more detailed version of the proces
 2. Then, I desired to test this by writing a quick if statement in main, just to see if I could use the variables declared in the header properly.  The conditional statement included the value for the ZERO button.  I planned to have it change the value of a variable.  This did not work. I then remembered that I changed the name of the header file when I copied it in and the reference at the top of the C file did not match the new name.  It was good I included this before I moved on, as it would be confusing to deal with multiple errors at the same time.  
 3. Then I wanted to construct the first interrupt.  I realized from the skeleton code that this method would be called everytime there was a pin change and the interrupt was not in the middle of operating. I also noticed that if the final value was 0, or option switch 0 was chosen, the a falling edge had occured. This is exactly what is needed to sense the falling edge, which is the first hint that a packet has been received.  I therefore wrote the code for decyphering the packet in this interrupt.  I then created if statements corresponding to the desired range of either 1's or 0's.  Within these statements I simply changed a test variable.  I did this to test if I could receive an IR at all and have the program know it.  After monitoring the value of the test variable in the "memory browser" of code composer studio.  It worked!
 4. In this section I also added code which turned off the timer so that it was not counting while the signal is being received.  
-5. Then I altered the body of the if statements to ensure that the packet is received. I did this with just adding information to the right most bit of the "packet" variable, and then rotating all of the bits left.  
+5. Then I altered the body of the if statements to ensure that the packet is received. I did this by rotating the bits of the packet variable left and adding "OR"ing with either a 0 or a 1, to reflect the signal which just came in.  In this manner, all of the bits were received by the MSP430.  I tested this out by running the program and clicking on of the buttons on the remote.  I then checked the memory browser again to check what value was recorded.  Honestly, at this point I did not expect it to work, but it did, and that was fine by me.  
+6. Then decided that the if statements in the main loop should be surrounded by another if statement, one which tells knows if a complete signal has been received.  I just used the pseudo-boolean variable available newIRPacket to determine if this occured.  I set the variable to false in the middle of this if statment and then set the variable to true after the second interrupt method occured. This is so that the computer does not try to decode the signal before it is competely done receiving it.  
+7. Then I tried receiving a signal and it did not work.  I tried many different things, such as re-checking my code, making sure I reset the interrupt flag, and if my time variables were defined correctly.  Then I wondered if the range predetermined by the skeleton code of plus/minus 100 was wide enough.  I tried changing it to 150, and when I tested the code again, it worked! To do this I had to set the breakpoint to the end of the second interrupt.  After verifying that the signal was caught correctly, I tried adding the light business to the if statements in main.  
+8. Adding the functionality for the lights was not difficult at all, since it was done in a previous example in class.  No problems were encountered when adding the toggling lights. 
+9. When I ran the program, I noticed that the light would occilate between on and off if the buttons were held down.  At first this was worrisome, however, I realized this might be a good thing when I am trying to get the block to move around for A functionality. 
+
+NOTE: Excel was used, along with the data from day 1 calculations to find out the average lengths of 0s and 1s being sent.  
 
 
-1. First, I made sure to put my own values for my specific remote into the H file so that the numbers can be interpreted correctly.  
-2. 
+The code for this basic functionality can be seen here: 
 
+[C code](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/basic_start5.c)
+[header file](https://raw.githubusercontent.com/JohnTerragnoli/ECE382_Lab05/master/1.%20Code/basic_start5.h)
 
-
-2. When I first did this I used the lower and upper bounds calculated in Excel and just wrote those specific values as the definitions.  After I had coded a lot, my code did not run.  This made me think it was wrong to go against what was originally on the skeleton file.  
-3. I use the range initially give to us.  This made my buttons work sporatically.  So I tried widening the accepted range.  I changed it from 100 to 150, and this worked better so it was kept.  If any additional side effects show up later then I will be sure to remember this change and anticipate its possible ramifications.  
-4. Once I got the design working, I tested it with a number of other buttons to make sure all the ones I would need later were responsive.  
-5. 
-finding the smallest possible range necessary.  
-
-#B Functionality
 
 #A Functionality
 
