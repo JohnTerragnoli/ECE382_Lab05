@@ -4,6 +4,14 @@
 // Date:	Fall 2014
 // Purp:	Include file for the MSP430
 //-----------------------------------------------------------------
+// Name:	JP Terragnoli
+// File:	lab5.h
+// Date:	Fall 2014
+// Purp:	Include file for the MSP430.  The header for
+//			the basic functionality of lab 5. It is mostly used to
+//			define constants and to define type of variables use in
+// 			the main.
+//-----------------------------------------------------------------
 
 //-----------------------------------------------------------------
 // Page 76 : MSP430 Optimizing C/C++ Compiler v 4.3 User's Guide
@@ -21,7 +29,7 @@ typedef		unsigned long long	int64;
 //-----------------------------------------------------------------
 void initMSP430();
 __interrupt void pinChange (void);
-
+__interrupt void timerOverflow (void);
 
 
 //-----------------------------------------------------------------
@@ -50,6 +58,10 @@ __interrupt void pinChange (void);
 #define		minStartPulse		averageStartPulse - marginOfError
 #define		maxStartPulse		averageStartPulse + marginOfError
 
+
+
+
+//all of the buttons specific to remote #3.
 #define		PWR		0x02FD48B7
 #define		ONE		0x02FD807F
 #define		TWO		0x02FD40BF

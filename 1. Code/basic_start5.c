@@ -4,102 +4,57 @@
 // Date:	Fall 2014
 // Purp:	Demo the decoding of an IR packet
 //-----------------------------------------------------------------
+// Name:	JP Terragnoli
+// File:	lab5.c
+// Date:	Fall 2014
+// Purp:	Demo the decoding of an IR packet, and making the LEDs on
+//			the MSP430 light up via remote.
+//-----------------------------------------------------------------
+
 #include <msp430g2553.h>
 #include "basic_start5.h"
 
 
-
-int8	newIrPacket = FALSE;
+int32	packet;
 int16	packetData[48];
+int8	newIRPacket = FALSE;
 int8	packetIndex = 0;
 
-//place to store the packet not in an array.
-int32	IRPacket = 0x00000000;
-
-
-unsigned char execute=TRUE;
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
 void main(void) {
-
-	//nothing was changed about this method.
+	//touched nothing here.
 	initMSP430();				// Setup MSP to process IR and buttons
-
-	//just counters used later to waste time.
-	unsigned counter = 0;
-	unsigned counter1 = 0;
 
 	while(1)  {
 
-		if(execute==TRUE) {
+		//only go if we have a new packet coming in.
+		if(newIRPacket){
 
-			//prevents the program from reading another button press while we
-			//are analyzing this one!!
 			_disable_interrupt();
 
-
-			//ensures that the index is set to 0 just in case.
-			packetIndex = 0;
-
-			//takes care of data that is not logic 0 or 1.  We don't want this in
-			//the packet!!!
-			while(packetData[packetIndex]==otherData) {
-				packetIndex++;
+			//toggles the leds on/off.
+			if(packet == PWR){
+				P1OUT ^= BIT6;
 			}
-
-
-			//gets all of the useful informaiton out of the packet.
-			while(packetIndex<packetLength) {
-				IRPacket+=packetData[packetIndex];
-				IRPacket<<=1;
-				packetIndex++;
-			}
-
-
-			//gets the last part of the data packet.
-			IRPacket+=packetData[packetIndex];
-
-
-
-			//these if statements just toggle the LEDs on or off.
-			if(IRPacket == PWR) {
+			if(packet == ONE){
 				P1OUT ^= BIT0;
 			}
 
-			if(IRPacket == ZERO) {
-				P1OUT ^= BIT6;
-			}
 
 
-			//delays to prevent the bouncing affect and from counting each button press
-			//multiple times. Prevents it from being "sticky."
-			for(counter=0; counter<0xFF;counter++){
-				for(counter1=0; counter1<0xFF; counter1++){
-				}
-			}
-
-
-
-			//resets the packet so that we can accept the next one.
-			packetIndex=0;
-			IRPacket=0x00000000;
-
-
-			//now we can accept more packets of information.
+			//makes sure the interrupt is ready for use again!.
 			_enable_interrupt();
 
-			//don't want to be executing when the button has not been pressed yet.
-			execute =FALSE;
-		} else {
-			IRPacket = 0x00000000;
+
+
+			//makes sure we dont decode the signal until the complete next on is received again.
+			newIRPacket= FALSE;
 		}
 
 
-
-
-	} // end if new IR packet arrived
-} // end infinite loop
-// end main
+	} // end infinite loop
+} // end main
 
 // -----------------------------------------------------------------------
 // In order to decode IR packets, the MSP430 needs to be configured to
@@ -132,7 +87,7 @@ void initMSP430() {
 	P1DIR |= BIT0 | BIT6;				// Enable updates to the LED
 	P1OUT &= ~(BIT0 | BIT6);			// An turn the LED off
 
-	TA0CCR0 = 0x8000;					// create a 16mS roll-over period
+	TA0CCR0 = 0xFFFF;					// create a 16mS roll-over period
 	TACTL &= ~TAIFG;					// clear flag before enabling interrupts = good practice
 	TACTL = ID_3 | TASSEL_2 | MC_1;		// Use 1:1 presclar off MCLK and enable interrupts
 
@@ -148,7 +103,7 @@ void initMSP430() {
 // The negative edge is associated with end of the logic 1 half-bit and
 // the start of the logic 0 half of the bit.  The timer contains the
 // duration of the logic 1 pulse, so we'll pull that out, process it
-// and store the bit in the global irPacket variable. Going forward there
+// and store the bit in the global packet variable. Going forward there
 // is really nothing interesting that happens in this period, because all
 // the logic 0 half-bits have the same period.  So we will turn off
 // the timer interrupts and wait for the next (positive) edge on P2.6
@@ -174,56 +129,55 @@ __interrupt void pinChange (void) {
 
 	switch (pin) {					// read the current pin level
 		case 0:						// !!!!!!!!!NEGATIVE EDGE!!!!!!!!!!
+
+
 			pulseDuration = TAR;
-
-
-			//determines if a 0 or a 1 occured.  You can tell by the length of the pulse!!!
-			//the binary values are temporarily stored in the variable "pulseDuration"
-			if (pulseDuration >= minLogic1Pulse && pulseDuration <= maxLogic1Pulse) {
-				pulseDuration = 1;
-			} else if (pulseDuration >= minLogic0Pulse && pulseDuration <= maxLogic0Pulse ) {
-				pulseDuration = 0;
-			}else {
-				pulseDuration = otherData;
+			//determines if the incomming signal is a 0 or a 1.  This is determined by
+			//the length with the signal is held high, as defined in the header.
+			if((pulseDuration<maxLogic0Pulse) && (pulseDuration>minLogic0Pulse)){
+				packet = (packet << 1) | 0;
+			}
+			if((pulseDuration<maxLogic1Pulse) && (pulseDuration>minLogic1Pulse)){
+				packet = (packet << 1) | 1;
 			}
 
 
 			packetData[packetIndex++] = pulseDuration;
-
-			LOW_2_HIGH; // Setup pin interrupr on positive edge
+			TACTL = 0;				//turn off timer A e.w.
+			LOW_2_HIGH; 				// Setup pin interrupr on positive edge
 			break;
 
 		case 1:							// !!!!!!!!POSITIVE EDGE!!!!!!!!!!!
 			TAR = 0x0000;						// time measurements are based at time 0
-			HIGH_2_LOW; 						// Setup pin interrupr on falling edge
+			TA0CCR0=0xFFFF;		//need to make sure we set the number we are counting up to.
+								//this should be enough time.
+			TACTL = ID_3 | TASSEL_2 | MC_1 | TAIE;	//this just sets up how we are counting
+											//each count will take 8 times as long.
+			HIGH_2_LOW; 						// Setup pin interrupr on positive edge
 			break;
 	} // end switch
 
-
-	//This means we have recorded a packet length of data and we are ready to start executing it.
-	if(packetIndex>packetLength){
-		execute=TRUE;
-	}
-
 	P2IFG &= ~BIT6;			// Clear the interrupt flag to prevent immediate ISR re-entry
-
 
 } // end pinChange ISR
 
 
 
+// -----------------------------------------------------------------------
+//	The main purpose of this interrupt is to create a time gap for every wave that comes in,
+//	to ensure that the end part of it is not cut off.  Also, it serves to reset the packet index
+//	so that the new packet can be recorded in it's entirety and recorded from the beginning, so
+//	the signal is not mixed up or placed out of order.  Also, it lets the system
+//	know that a new packet has arrived and that it has been recorded.  This allows the
+//	if statement in the while loop to be satisfied so that we can carry out the purpose
+//	of the signal received.
+// -----------------------------------------------------------------------
+#pragma vector = TIMER0_A1_VECTOR			// This is from the MSP430G2553.h file
+__interrupt void timerOverflow (void) {
 
-
-
-
-
-
-
-
-
-
-//originally there was an interrupt method at the bottom.  However, I started coding in main and forgot to go back and utilize this method.
-//It was probably here for a reason but I made-do without it.
-
-
-//looking back on it, though, this method could have been used as the delay created in the main loop.
+	TACTL = 0;
+	TACTL ^= TAIE;
+	packetIndex = 0;  //get ready for the next one.
+	newIRPacket = TRUE;  //decode the new signal!!!
+	TACTL &= ~TAIFG;  //resets the flag :)
+}
