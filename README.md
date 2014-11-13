@@ -154,7 +154,12 @@ The purpose of A functionality was to use the remote to play etch-a-sketch (Lab 
 2. Then, I relized that it would probably be easier to just call the subroutines needed by the main file by mentioning them with "exter" statements at the top of the code.  
 3. Then I added the intializing lines from Lab 4 which just set up the variables used to keep track of the color and location of the box.  This included setting up the LCD screen.  
 4. Then, I pressed the build button to ensure there were no errors and I played the program.  A block was initialized on the middle of the LCD.  
-5. Then, all there was to do was to change which buttons are being sensed in the main method.  I changed them to directions and ZERO button which was to be used for color.  Ideally this would work just like required functionality.  However, when I played the program, 
+5. Then, all there was to do was to change which buttons are being sensed in the main method.  I changed them to directions and ZERO button which was to be used for color.  Ideally this would work just like required functionality.  However, when I played the program, the block would only move one square and then become unresponsive.  After spending many hours on this issue I brought it into EI, but after spending many hours there none of my instructors could fix it.  They mentioned that I might want to try changing around the initializing statements like they did at the beginning, but this made no difference.  We also tried different locations for drawing the block, clearing the screen, and clearing the variables.  Nothing worked so the project was eventually abaondoned.  
+6. What is most interesting about this issue is that if the right buttons sets as constants in the code, the block would move around the screen.  Also, during required functionality, the signal was properly decoded.  Unfortunately, when the code was mixed together, it did not work.  I also tried changing the width of the range of accepted signal lengths, but this did not change anything.  After spending about 12 hours on this problem I decided to quit so that I could study for the GR.  
+
+
+Conclusion: 
+Unfortunatetly, nothing was achieved.  A functionality was not attained.  
 
 #Documentation: 
 C2C Hunter Her explained to me to use a falling edge on the logic analyzer and where to look in CCS for the count values. 
