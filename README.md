@@ -117,6 +117,13 @@ Design Process:
 
 this is just doodleing.  I will write down a more detailed version of the process later.  
 
+1. To construct this code, I first started out by filling in the numbers specific to my remote in the header file.  This included the code for the buttons, the length of the different types of pulses, and calculating the min and max pulse lengths for each typte. 
+2. Then, I desired to test this by writing a quick if statement in main, just to see if I could use the variables declared in the header properly.  The conditional statement included the value for the ZERO button.  I planned to have it change the value of a variable.  This did not work. I then remembered that I changed the name of the header file when I copied it in and the reference at the top of the C file did not match the new name.  It was good I included this before I moved on, as it would be confusing to deal with multiple errors at the same time.  
+3. Then I wanted to construct the first interrupt.  I realized from the skeleton code that this method would be called everytime there was a pin change and the interrupt was not in the middle of operating. I also noticed that if the final value was 0, or option switch 0 was chosen, the a falling edge had occured. This is exactly what is needed to sense the falling edge, which is the first hint that a packet has been received.  I therefore wrote the code for decyphering the packet in this interrupt.  I then created if statements corresponding to the desired range of either 1's or 0's.  Within these statements I simply changed a test variable.  I did this to test if I could receive an IR at all and have the program know it.  After monitoring the value of the test variable in the "memory browser" of code composer studio.  It worked!
+4. In this section I also added code which turned off the timer so that it was not counting while the signal is being received.  
+5. Then I altered the body of the if statements to ensure that the packet is received. I did this with just adding information to the right most bit of the "packet" variable, and then rotating all of the bits left.  
+
+
 1. First, I made sure to put my own values for my specific remote into the H file so that the numbers can be interpreted correctly.  
 2. 
 
